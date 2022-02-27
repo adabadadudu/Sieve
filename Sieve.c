@@ -40,7 +40,6 @@ int first_gt(unsigned int key, unsigned int arr[]){
     else
         return -1;
 }
-}
 
 void ABORT(char *msg){
     puts(msg); exit(1);
