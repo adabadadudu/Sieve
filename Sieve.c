@@ -19,10 +19,27 @@ int range(unsigned short int from, unsigned int to){
 }
 
 // Get first element in arr, greater than x
-int first_gt(unsigned int x, unsigned int arr[]){
-    for(int i=0; i < NUM_LIST_SIZE; i++)
-        if(arr[i] > x)
-            return arr[i];
+int first_gt(unsigned int key, unsigned int arr[]){
+    int low = 0;
+    int high = NUM_LIST_SIZE - 1;
+    int mid;
+
+    while ((arr[high] != arr[low]) && (key >= arr[low]) && (key <= arr[high])) {
+        mid = low + ((key - arr[low]) * (high - low) / (arr[high] - arr[low]));
+
+        if (arr[mid] < key)
+            low = mid + 1;
+        else if (key < arr[mid])
+            high = mid - 1;
+        else
+            return mid;
+    }
+
+    if (key == arr[low])
+        return low;
+    else
+        return -1;
+}
 }
 
 void ABORT(char *msg){
